@@ -16,16 +16,14 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
-from core.views import *
+from core.views import index, testing, all_courses, course_statistics, user_profile
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('testing', testing),
-    path('courses', allCourses),
-    path('courseStat', courseStat),
-    path('profile/<int:user_id>', userProfile),
-    path('', index),
+    path('testing/', testing, name='testing'),
+    path('courses/', all_courses, name='all_courses'),
+    path('course-statistics/', course_statistics, name='course_statistics'),
+    path('profile/<int:user_id>/', user_profile, name='user_profile'),
+    path('', index, name='home'),
+    path('silk/', include('silk.urls', namespace='silk')),
 ]
-
-urlpatterns += [path('silk/', include('silk.urls', namespace='silk'))]
